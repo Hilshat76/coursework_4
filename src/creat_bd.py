@@ -21,24 +21,37 @@ class FileWork(ABC):
 
 
 class WorkWithJson(FileWork):
+    '''
+    Класс для работы с JSON файлом
+    '''
     def __init__(self, file_name):
         self.file_name = file_name
 
     def read_file(self):
+        '''
+        Метод для чтения JSON файла
+        '''
         with open(f"data/{self.file_name}", "r", encoding="utf-8") as file:
             return json.load(file)
 
     def save_file(self, data):
-        """Добавляет новые данные в JSON файл."""
+        '''
+        Метод обавляет новые данные в JSON файл
+        '''
         with open(f"data/{self.file_name}", 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
 
     def del_file(self):
+        '''
+        Метод удаляет данные с JSON файла
+        '''
         with open(f"data/{self.file_name}", "w") as file:
             pass
 
     def get_data(self, criterion):
-        """Метод получения данных из файла по указанным критериям"""
+        '''
+        Метод получения данных из файла по указанным критериям
+        '''
         criterion_vac = []
         with open(f"data/{self.file_name}", "r", encoding="utf8") as file:
             vacancies = json.load(file)

@@ -1,4 +1,7 @@
 class JobVacancy:
+    '''
+    Класс для ввывода инвормации о вакансиях
+    '''
     def __init__(self, name: str, salary: dict, url: str, requirement: str):
         if not isinstance(salary, dict):
             raise TypeError("Salary must be a dictionary")
@@ -16,10 +19,19 @@ class JobVacancy:
         )
 
     def __repr__(self):
+        '''
+        отображения информации об объекте класса
+        '''
         return f"{JobVacancy.__class__.__name__}({self.name}, {self.salary}, {self.url}, {self.requirement})"
 
     def __gt__(self, other):
+        '''
+        магический метод для оператора больше >
+        '''
         return self.salary['to'] > other.salary['to']
 
     def __lt__(self, other):
+        '''
+        магический метод для оператора меньше <
+        '''
         return self.salary['to'] < other.salary['to']

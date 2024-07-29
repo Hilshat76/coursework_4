@@ -4,7 +4,9 @@ import json
 
 
 def vac_user(file_name):
-    """Приводит полученные данные к данным для вывода"""
+    '''
+    Приводит полученные данные к данным для вывода
+    '''
     with open(f"data/{file_name}", "r", encoding="utf8") as f:
         vacancies = json.load(f)
     user_vac = []
@@ -30,7 +32,9 @@ def vac_user(file_name):
 
 
 def sorting(vacancies, n: int):
-    """Сортировка N вакансий"""
+    '''
+    Сортировка N вакансий
+    '''
     sort_vac = []
     cb = CB()
     cb.load_vacancies()
