@@ -35,15 +35,15 @@ class HH(Parser):
 class CB(Parser):
     def __init__(self):
         self.__url = "https://www.cbr-xml-daily.ru/daily_json.js"
-        self.Exchange = dict
+        self.exchange = dict
 
     def load_vacancies(self, **kwargs):
         response = requests.get(self.__url)
-        self.Exchange = response.json()['Valute']
+        self.exchange = response.json()['Valute']
 
     @property
     def show_exchange(self):
-        return self.Exchange
+        return self.exchange
 
     def __str__(self):
-        return f"{CB.__class__.__name__}({self.Exchange})"
+        return f"{CB.__class__.__name__}({self.exchange})"
