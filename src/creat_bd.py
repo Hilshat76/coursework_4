@@ -22,9 +22,14 @@ class FileWork(ABC):
 
 class WorkWithJson(FileWork):
     """Класс по работе с JSON файлом"""
+    def __init__(self, file_name):
+        self.__file_name = self.__validation_name_file(file_name)
 
-    def __init__(self):
-        self.__file_name = "vacancy.json"
+    @staticmethod
+    def __validation_name_file(file_name):
+        if file_name == ".json":
+            return "vacancy.json"
+        return file_name
 
     def read_file(self):
         """Считывание данных из JSON файла"""
@@ -32,10 +37,12 @@ class WorkWithJson(FileWork):
             return json.load(file)
 
     def save_file(self, data):
-        """Добавляет новые данные в JSON файл"""
+        """Добавляет новые данные в JSON файл."""
         vacancy = []
         try:
             vacancy.extend(self.read_file())
+        except FileNotFoundError as err:
+            pass
         except json.decoder.JSONDecodeError as err:
             pass
         vacancy.extend(data)

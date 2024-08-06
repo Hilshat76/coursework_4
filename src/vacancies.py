@@ -1,5 +1,7 @@
 class JobVacancy:
     def __init__(self, name: str, salary: dict, url: str, requirement: str):
+        if not isinstance(salary, dict):
+            raise TypeError("Salary must be a dictionary")
         self.name = name
         self.url = url
         self.requirement = requirement
@@ -24,13 +26,13 @@ class JobVacancy:
         return salary
 
     def well(self, cb):
-        """Перевод валюты по курсу СБ"""
+        """Перевод валюты по курсу"""
         if self.salary["currency"] != "RUR" and self.salary["currency"] != "" and "BYR" != self.salary["currency"]:
             currency = self.salary["currency"]
             self.salary["from"] = round(
-                self.salary["from"] * cb.exchange[currency]["Value"] / cb.exchange[currency]["Nominal"])
+                self.salary["from"] * cb.Exchange[currency]["Value"] / cb.Exchange[currency]["Nominal"])
             self.salary["to"] = round(
-                self.salary["to"] * cb.exchange[currency]["Value"] / cb.exchange[currency]["Nominal"])
+                self.salary["to"] * cb.Exchange[currency]["Value"] / cb.Exchange[currency]["Nominal"])
             self.salary["currency"] = f"RUR, выплата в {currency}"
 
     def __repr__(self):
