@@ -22,7 +22,7 @@ class FileWork(ABC):
 
 class WorkWithJson(FileWork):
     """Класс по работе с JSON файлом"""
-    def __init__(self, file_name):
+    def __init__(self, file_name="vacancy.json"):
         self.__file_name = self.__validation_name_file(file_name)
 
     @staticmethod
